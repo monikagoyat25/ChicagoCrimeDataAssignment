@@ -1,0 +1,84 @@
+{
+"Assault": [
+{ 
+ "Year":"2001" , 
+ "Arrest":"7150" , 
+ "NotArrest":"24233"
+ }
+,{ 
+ "Year":"2002" , 
+ "Arrest":"7340" , 
+ "NotArrest":"24181"
+ }
+,{ 
+ "Year":"2003" , 
+ "Arrest":"6909" , 
+ "NotArrest":"22568"
+ }
+,{ 
+ "Year":"2004" , 
+ "Arrest":"7004" , 
+ "NotArrest":"21846"
+ }
+,{ 
+ "Year":"2005" , 
+ "Arrest":"6631" , 
+ "NotArrest":"20435"
+ }
+,{ 
+ "Year":"2006" , 
+ "Arrest":"6288" , 
+ "NotArrest":"19657"
+ }
+,{ 
+ "Year":"2007" , 
+ "Arrest":"6550" , 
+ "NotArrest":"19764"
+ }
+,{ 
+ "Year":"2008" , 
+ "Arrest":"5316" , 
+ "NotArrest":"20131"
+ }
+,{ 
+ "Year":"2009" , 
+ "Arrest":"5700" , 
+ "NotArrest":"17161"
+ }
+,{ 
+ "Year":"2010" , 
+ "Arrest":"5051" , 
+ "NotArrest":"16484"
+ }
+,{ 
+ "Year":"2011" , 
+ "Arrest":"5185" , 
+ "NotArrest":"15225"
+ }
+,{ 
+ "Year":"2012" , 
+ "Arrest":"4792" , 
+ "NotArrest":"15105"
+ }
+,{ 
+ "Year":"2013" , 
+ "Arrest":"4460" , 
+ "NotArrest":"13511"
+ }
+,{ 
+ "Year":"2014" , 
+ "Arrest":"4495" , 
+ "NotArrest":"12400"
+ }
+,{ 
+ "Year":"2015" , 
+ "Arrest":"4038" , 
+ "NotArrest":"12989"
+ }
+,{ 
+ "Year":"2016" , 
+ "Arrest":"944" , 
+ "NotArrest":"4087"
+ }
+ ] 
+ }
