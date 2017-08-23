@@ -12,6 +12,7 @@
     </style>
 </head>
 <body>
+    <h2>A Pie Chart showing the different crime category.</h2>
     <div id="chart"></div>
 
     
@@ -19,8 +20,8 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
 
     <script>
-        var w = 700;
-        var h = 700;
+        var w = 600;
+        var h = 600;
         var r = h / 2;
         var aColor = d3.scale.category10();
 
@@ -35,7 +36,7 @@
             });
 
             // Declare an arc generator function
-            var arc = d3.svg.arc().outerRadius(300);
+            var arc = d3.svg.arc().outerRadius(250);
 
             // Select paths, use arc generator to draw
             var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");

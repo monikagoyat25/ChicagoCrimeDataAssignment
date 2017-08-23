@@ -6,10 +6,12 @@
     <style>
         .category, svg {
             font-size: 10px;
+            background-color : ghostwhite;
         }
     </style>
 </head>
 <body>
+    <h2>A Stacked Bar Chart filtering Theft over $500 and Under $500.</h2>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
 
@@ -17,8 +19,8 @@
         var xData = ["Under$500", "Over$500"];
 
         var margin = { top: 20, right: 50, bottom: 140, left: 70 },
-            width = 1600 - margin.left - margin.right,
-            height = 800 - margin.top - margin.bottom;
+            width = 1200 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
 
         var x = d3.scale.ordinal()
             .rangeRoundBands([0, width], .35);
@@ -26,7 +28,7 @@
         var y = d3.scale.linear()
             .rangeRound([height, 0]);
 
-        var color = d3.scale.category10();
+        var color = d3.scale.category20b();
 
         var xAxis = d3.svg.axis()
             .scale(x)

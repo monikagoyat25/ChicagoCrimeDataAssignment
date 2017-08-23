@@ -66,7 +66,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\Style.css" />
     <Content Include="d3\d3.js" />
     <Content Include="d3\d3.min.js" />
     <Content Include="data\linechartdata.json" />
@@ -82,9 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Index.html" />
-    <Content Include="js\barchart.js" />
-    <Content Include="js\linechart.js" />
-    <Content Include="js\piechart.js" />
     <Content Include="pie.html" />
     <Content Include="bargraph.html" />
     <Content Include="Web.config" />
