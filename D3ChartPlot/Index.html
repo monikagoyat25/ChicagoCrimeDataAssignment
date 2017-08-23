@@ -7,9 +7,10 @@
 
         .line {
             fill: none;
-            stroke: steelblue;
+            //stroke: red;
             stroke-width: 2px;
         }
+
     </style>
 </head>
 <body>
@@ -18,14 +19,15 @@
     <script src=".\d3\d3.min.js"></script>
     <script src=".\d3\d3.js"></script>
     <script>
-
+        
         // set the dimensions and margins of the graph
         var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            width = 1200 - margin.left - margin.right,
+            height = 600 - margin.top - margin.bottom;
 
         // parse the date / time
         var parseTime = d3.timeParse("%Y");
+
 
         // set the ranges
         var x = d3.scaleTime().range([0, width]);
@@ -51,9 +53,10 @@
             "translate(" + margin.left + "," + margin.top + ")")
 
         function draw(data, crime) {
-
+           
             var data = data[crime];
-
+            var xData = ["Arrest", "NotArrest"];
+            var color = ["red","green"];
             // format the data
             data.forEach(function (d) {
                 d.Year = parseTime(d.Year);
@@ -76,20 +79,52 @@
             svg.append("path")
                 .data([data])
                 .attr("class", "line")
-                .attr("d", valueline);
+                .attr("d", valueline)
+                .style("stroke", 'red');
+               
             // Add the valueline path.
             svg.append("path")
                 .data([data])
                 .attr("class", "line")
-                .attr("d", valueline2);
+                .attr("d", valueline2)
+                .style("stroke", 'green');
+                
             // Add the X Axis
             svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(x).ticks(20));
 
             // Add the Y Axis
             svg.append("g")
-                .call(d3.axisLeft(y));
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "15px")
+                .attr("fill", "#000")
+                .text("Total No Of Cases ");
+
+            var legend = svg.selectAll(".legend")
+                .data(xData.slice())
+                .enter().append("g")
+                .attr("class", "legend")
+                .attr("transform", function (d, i) { return "translate(-20," + i * 20 + ")"; });
+
+            legend.append("rect")
+                .attr("x", width - 18)
+                .attr("width", 18)
+                .attr("height", 18);
+
+            legend.select("rect").style("fill", function (d, i) {
+                return color[i];
+            });
+
+            legend.append("text")
+                .attr("x", width - 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .style("text-anchor", "end")
+                .text(function (d) { return d; });
         }
         // Get the data
         d3.json("./data/linechartdata.json", function (error, data) {

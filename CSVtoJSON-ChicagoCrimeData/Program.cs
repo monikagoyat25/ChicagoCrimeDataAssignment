@@ -74,7 +74,7 @@ namespace CrimeDataFinalCSVtoJSON
             freader.Flush();
             reader.Dispose();
             // BAR CHART  
-            writer.WriteLine("{\n\"Theft\": [");
+            writer.WriteLine("[");
             for (int p = 0; p < 16; p++)
             {
                 int a1 = p + 2001;
@@ -82,7 +82,7 @@ namespace CrimeDataFinalCSVtoJSON
                 if (p < 15)
                     writer.Write(',');
             }
-            writer.WriteLine(" ] \n }");
+            writer.WriteLine(" ]");
             fwriter.Flush(); writer.Flush();
             // MULTISERIES LINE CHART
             writer1.WriteLine("{\n\"Assault\": [");
@@ -99,7 +99,7 @@ namespace CrimeDataFinalCSVtoJSON
             writer2.WriteLine("[");
             for (int p = 0; p < 4; p++)
             {
-                writer2.WriteLine("{ \n \" Category\":\"" + pieheading[p] + "\" , \n \"Value\":\"" + CrimeCategory[p] + "\"\n } ");
+                writer2.WriteLine("{ \n \"Category\":\"" + pieheading[p] + "\" , \n \"Value\":\"" + CrimeCategory[p] + "\"\n } ");
                 if (p < 3) writer2.Write(',');
             }
             writer2.WriteLine("\n]");

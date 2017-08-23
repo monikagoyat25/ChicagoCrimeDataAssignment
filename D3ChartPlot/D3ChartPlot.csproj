@@ -69,8 +69,8 @@
     <Content Include="css\Style.css" />
     <Content Include="d3\d3.js" />
     <Content Include="d3\d3.min.js" />
-    <Content Include="data\barchartdata.json" />
     <Content Include="data\linechartdata.json" />
+    <Content Include="data\barchartdata.json" />
     <Content Include="data\piechartdata.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -85,7 +85,8 @@
     <Content Include="js\barchart.js" />
     <Content Include="js\linechart.js" />
     <Content Include="js\piechart.js" />
-    <Content Include="piegraph.html" />
+    <Content Include="pie.html" />
+    <Content Include="bargraph.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

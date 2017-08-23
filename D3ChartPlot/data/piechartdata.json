@@ -1,18 +1,18 @@
 [
 { 
- " Category":"IndexCrime" , 
+ "Category":"IndexCrime" , 
  "Value":"103931"
  } 
 ,{ 
- " Category":"NonIndexCrime" , 
+ "Category":"NonIndexCrime" , 
  "Value":"156986"
  } 
 ,{ 
- " Category":"VoilentCrime" , 
+ "Category":"VoilentCrime" , 
  "Value":"23044"
  } 
 ,{ 
- " Category":"PropertyCrime" , 
+ "Category":"PropertyCrime" , 
  "Value":"80887"
  } 
 

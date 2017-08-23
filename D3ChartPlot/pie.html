@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono);
+
+        .slice text {
+            font-family: Droid Sans;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+
+    
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <script>
+        var w = 700;
+        var h = 700;
+        var r = h / 2;
+        var aColor = d3.scale.category10();
+
+
+        function draw(data) {
+
+            var data = data;
+            var vis = d3.select('#chart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+
+            var pie = d3.layout.pie().value(function (d) {
+                return d.Value;
+            });
+
+            // Declare an arc generator function
+            var arc = d3.svg.arc().outerRadius(300);
+
+            // Select paths, use arc generator to draw
+            var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");
+            arcs.append("svg:path")
+                .attr("fill", function (d, i) {
+                    return aColor(i);
+                })
+                .attr("d", function (d) { return arc(d); })
+                ;
+
+            // Add the text
+            arcs.append("svg:text")
+                .attr("transform", function (d) {
+                    d.innerRadius = 100; /* Distance of label to the center*/
+                    d.outerRadius = r;
+                    return "translate(" + arc.centroid(d) + ") rotate(-5)";
+                }
+                )
+                .attr("text-anchor", "middle")
+                .text(function (d, i) { return data[i].Category; })
+                .style("font-size", "13px") //To change the font
+                ;
+        }
+        d3.json("../data/piechartdata.json", function (error, data) {
+            if (error) throw error;
+
+            // trigger render
+            draw(data);
+        });
+    </script>
+
+</body>
+</html>
