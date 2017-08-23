@@ -30,7 +30,7 @@
 
             var data = data;
             var vis = d3.select('#chart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
-
+            var xData = ["IndexCrime","NonIndexCrime","VoilentCrime","PropertyCrime"];
             var pie = d3.layout.pie().value(function (d) {
                 return d.Value;
             });
@@ -56,9 +56,31 @@
                 }
                 )
                 .attr("text-anchor", "middle")
-                .text(function (d, i) { return data[i].Category; })
+                .text(function (d, i) { return data[i].Value; })
                 .style("font-size", "13px") //To change the font
                 ;
+            var legend = vis.selectAll(".legend")
+                .data(xData.slice())
+                .enter().append("g")
+                .attr("class", "legend")
+                .attr("transform", function (d, i) { return "translate(-280," + i * 20 + ")"; });
+
+            legend.append("rect")
+                .attr("x", 110)
+                .attr("y",-280)
+                .attr("width", 10)
+                .attr("height", 10);
+
+            legend.select("rect").style("fill", function (d, i) {
+                return aColor(i);
+            });
+
+            legend.append("text")
+                .attr("x",100)
+                .attr("y",-280)
+                .attr("dy", ".35em")
+                .style("text-anchor", "end")
+                .text(function (d, i) { return xData[i]; });
         }
         d3.json("../data/piechartdata.json", function (error, data) {
             if (error) throw error;
