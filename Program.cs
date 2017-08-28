@@ -1,26 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace CrimeDataFinalCSVtoJSON
 {
-   class Program
+    class Program
     {
         static void Main(string[] args)
         {
             FileStream freader = new FileStream(@"C:\Users\Training\Downloads\crimedata.csv", FileMode.Open, FileAccess.ReadWrite);
-            FileStream fwriter = new FileStream(@"C:\Users\Training\source\repos\CSVtoJSON-ChicagoCrimeData\CSVtoJSON-ChicagoCrimeData\data\barchartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            FileStream fwriter1 = new FileStream(@"C:\Users\Training\source\repos\CSVtoJSON-ChicagoCrimeData\CSVtoJSON-ChicagoCrimeData\data\linechartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            FileStream fwriter2 = new FileStream(@"C:\Users\Training\source\repos\CSVtoJSON-ChicagoCrimeData\CSVtoJSON-ChicagoCrimeData\data\piechartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            StreamWriter writer = new StreamWriter(fwriter);
-            StreamWriter writer1 = new StreamWriter(fwriter1);
-            StreamWriter writer2 = new StreamWriter(fwriter2);
             StreamReader reader = new StreamReader(freader);
-            String[] Heading = new String[6] { "Year", "Over$500", "Under$500", "Year", "Arrest", "NotArrest"  };
+            String[] Heading = new String[6] { "Year", "Over$500", "Under$500", "Year", "Arrest", "NotArrest" };
             String[] pieheading = new String[4] { "IndexCrime", "NonIndexCrime", "VoilentCrime", "PropertyCrime" };
             int[] TheftPerYearUnder500 = new int[16];
             int[] TheftPerYearOver500 = new int[16];
@@ -29,6 +18,7 @@ namespace CrimeDataFinalCSVtoJSON
             int[] CrimeCategory = new int[4];
             string line = string.Empty;
             int x = 0, count = 0;
+
             while ((line = reader.ReadLine()) != null)
             {
                 count++;
@@ -73,18 +63,23 @@ namespace CrimeDataFinalCSVtoJSON
             }
             freader.Flush();
             reader.Dispose();
+
             // BAR CHART  
+            FileStream fwriter = new FileStream(@"data\barchartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter writer = new StreamWriter(fwriter);
             writer.WriteLine("[");
             for (int p = 0; p < 16; p++)
             {
                 int a1 = p + 2001;
-                writer.WriteLine("{ \n \"" + Heading[0] + "\":\""+ a1 + "\" , \n \"" + Heading[1]+"\":\""+TheftPerYearOver500[p]+"\" , \n \""+Heading[2]+"\":\"" + TheftPerYearUnder500[p]+"\"\n }");
+                writer.WriteLine("{ \n \"" + Heading[0] + "\":\"" + a1 + "\" , \n \"" + Heading[1] + "\":\"" + TheftPerYearOver500[p] + "\" , \n \"" + Heading[2] + "\":\"" + TheftPerYearUnder500[p] + "\"\n }");
                 if (p < 15)
                     writer.Write(',');
             }
             writer.WriteLine(" ]");
-            fwriter.Flush(); writer.Flush();
+            fwriter.Flush(); writer.Flush(); writer.Dispose();
             // MULTISERIES LINE CHART
+            FileStream fwriter1 = new FileStream(@"data\linechartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter writer1 = new StreamWriter(fwriter1);
             writer1.WriteLine("{\n\"Assault\": [");
             for (int p = 0; p < 16; p++)
             {
@@ -94,8 +89,10 @@ namespace CrimeDataFinalCSVtoJSON
                     writer1.Write(',');
             }
             writer1.WriteLine(" ] \n }");
-            fwriter1.Flush(); writer1.Flush();
+            fwriter1.Flush(); writer1.Flush(); writer1.Dispose();
             // Pie Chart
+            FileStream fwriter2 = new FileStream(@"data\piechartdata.json", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter writer2 = new StreamWriter(fwriter2);
             writer2.WriteLine("[");
             for (int p = 0; p < 4; p++)
             {
@@ -103,7 +100,8 @@ namespace CrimeDataFinalCSVtoJSON
                 if (p < 3) writer2.Write(',');
             }
             writer2.WriteLine("\n]");
-            fwriter2.Flush(); writer2.Flush();
+            fwriter2.Flush(); writer2.Flush(); writer2.Dispose();
         }
+      
     }
 }
